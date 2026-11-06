@@ -45,6 +45,7 @@
   .nav-logo-text span { display:block; }
   .nav-logo-text .cn { font-size:15px; font-weight:600; letter-spacing:1px; }
   .nav-logo-text .en { font-size:10px; color:#c0a060; letter-spacing:2px; margin-top:1px; }
+  .nav-right { display:flex; align-items:center; gap:20px; }
   .nav-links { display:flex; gap:32px; list-style:none; }
   .nav-links a {
     color: rgba(255,255,255,0.82); text-decoration:none;
@@ -53,6 +54,37 @@
     transition: all .25s;
   }
   .nav-links a:hover { color:#e8c87a; border-bottom-color:#e8c87a; }
+
+  /* ===== LANGUAGE SWITCH ===== */
+  .lang-switch { position:relative; flex-shrink:0; }
+  .lang-btn {
+    display:flex; align-items:center; gap:6px;
+    background: rgba(192,160,96,0.10);
+    border:1px solid rgba(192,160,96,0.40);
+    color:#e8c87a; font-size:13px; font-weight:600;
+    padding:7px 14px; border-radius:20px; cursor:pointer;
+    letter-spacing:1px; transition:.2s; white-space:nowrap;
+    font-family: inherit;
+  }
+  .lang-btn:hover { background: rgba(192,160,96,0.22); }
+  .lang-btn .caret { font-size:10px; opacity:.8; }
+  .lang-menu {
+    display:none; position:absolute; top:calc(100% + 10px); right:0;
+    background:#141830; border:1px solid rgba(192,160,96,0.35);
+    border-radius:8px; overflow:hidden; min-width:150px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.45);
+    z-index:1100;
+  }
+  .lang-menu.open { display:block; }
+  .lang-menu button {
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    width:100%; padding:10px 16px; background:transparent; border:none;
+    color:rgba(255,255,255,0.85); font-size:13.5px; cursor:pointer;
+    text-align:left; transition:.15s; font-family:inherit;
+  }
+  .lang-menu button:hover { background:rgba(192,160,96,0.15); color:#fff; }
+  .lang-menu button.active { color:#e8c87a; font-weight:700; }
+  .lang-menu button.active::after { content:'✓'; font-size:12px; }
 
   /* ===== HERO ===== */
   .hero {
@@ -106,7 +138,7 @@
     background: rgba(192,160,96,0.12);
     border: 1px solid rgba(192,160,96,0.35);
     border-radius:20px; padding:6px 16px;
-    color:#c0a060; font-size:13px; letter-spacing:3px;
+    color:#c0a060; font-size:13px; letter-spacing:2px;
     margin-bottom:28px;
   }
   .hero-eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:#c0a060; }
@@ -343,14 +375,30 @@
       <span class="en">SHANDONG DONGYUAN PRECISION</span>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#about">公司简介</a></li>
-    <li><a href="#products">产品系列</a></li>
-    <li><a href="#custom">定制服务</a></li>
-    <li><a href="#application">应用领域</a></li>
-    <li><a href="#capacity">生产能力</a></li>
-    <li><a href="#contact">联系我们</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav.about">公司简介</a></li>
+      <li><a href="#products" data-i18n="nav.products">产品系列</a></li>
+      <li><a href="#custom" data-i18n="nav.custom">定制服务</a></li>
+      <li><a href="#application" data-i18n="nav.application">应用领域</a></li>
+      <li><a href="#capacity" data-i18n="nav.capacity">生产能力</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">联系我们</a></li>
+    </ul>
+    <div class="lang-switch">
+      <button class="lang-btn" id="langBtn" aria-label="Language">
+        🌐 <span id="langCur">中文</span> <span class="caret">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu">
+        <button data-lang="zh">中文</button>
+        <button data-lang="en">English</button>
+        <button data-lang="ru">Русский</button>
+        <button data-lang="fr">Français</button>
+        <button data-lang="de">Deutsch</button>
+        <button data-lang="ko">한국어</button>
+        <button data-lang="ja">日本語</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -359,17 +407,17 @@
   <div class="hero-glow"></div>
   <div class="hero-inner">
   <div class="hero-content">
-    <div class="hero-eyebrow">花岗石精密构件 · 专业制造商</div>
+    <div class="hero-eyebrow"><span data-i18n="hero.eyebrow">花岗石精密构件 · 专业制造商</span></div>
     <div class="hero-subtitle">PRECISION GRANITE COMPONENTS</div>
     <h1 class="hero-title">
-      极致精度<br><em>铸就工业基石</em>
+      <span data-i18n="hero.t1">极致精度</span><br><em data-i18n="hero.t2">铸就工业基石</em>
     </h1>
-    <p class="hero-desc">
+    <p class="hero-desc" data-i18n="hero.desc">
       山东东远精密机械有限公司，位于"中国花岗石精密构件之乡"高唐县，专注花岗石精密测量工具与装备结构件的研发、生产与销售，产品远销欧美、日韩及东南亚30余国。
     </p>
     <div class="hero-cta">
-      <a href="#products" class="btn-primary">查看产品</a>
-      <a href="#contact" class="btn-outline">联系我们</a>
+      <a href="#products" class="btn-primary" data-i18n="hero.cta1">查看产品</a>
+      <a href="#contact" class="btn-outline" data-i18n="hero.cta2">联系我们</a>
     </div>
   </div><!-- /hero-content -->
   <div class="hero-logo-visual">
@@ -379,19 +427,19 @@
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">0.001<small style="font-size:16px;"> mm</small></div>
-      <div class="hero-stat-label">最高加工精度</div>
+      <div class="hero-stat-label" data-i18n="hero.s1">最高加工精度</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">5000<small style="font-size:16px;"> ㎡</small></div>
-      <div class="hero-stat-label">生产车间面积</div>
+      <div class="hero-stat-label" data-i18n="hero.s2">生产车间面积</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">000<small style="font-size:14px;"> 级</small></div>
-      <div class="hero-stat-label">最高精度等级</div>
+      <div class="hero-stat-num">000<small style="font-size:14px;"> <span data-i18n="hero.u3">级</span></small></div>
+      <div class="hero-stat-label" data-i18n="hero.s3">最高精度等级</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">30<small style="font-size:16px;">+</small></div>
-      <div class="hero-stat-label">出口国家和地区</div>
+      <div class="hero-stat-label" data-i18n="hero.s4">出口国家和地区</div>
     </div>
   </div>
 </section>
@@ -401,30 +449,30 @@
   <div class="about-grid">
     <div class="about-text reveal">
       <div class="section-tag">ABOUT US</div>
-      <h2 class="section-title" style="text-align:left;margin-bottom:0;">公司<em>简介</em></h2>
+      <h2 class="section-title" style="text-align:left;margin-bottom:0;"><span data-i18n="about.t1">公司</span><em data-i18n="about.t2">简介</em></h2>
       <div class="divider" style="margin:14px 0 20px;"></div>
-      <p>
+      <p data-i18n="about.p1">
         山东东远精密机械有限公司位于山东省聊城市高唐县赵寨子镇，坐落于"中国花岗石精密构件之乡"——高唐县花岗岩精密机械产业集群核心区。
       </p>
-      <p>
+      <p data-i18n="about.p2">
         公司专注于花岗石精密测量工具和装备结构件的研发、生产与销售，拥有完整的精密加工生产线和先进的检测设备。产品可根据客户需求定制各种规格和异形件，远销欧美、日韩及东南亚等国家和地区。
       </p>
       <div class="about-info-grid">
         <div class="about-info-item">
-          <label>公司全称</label>
-          <p>山东东远精密机械有限公司</p>
+          <label data-i18n="about.l1">公司全称</label>
+          <p data-i18n="about.v1">山东东远精密机械有限公司</p>
         </div>
         <div class="about-info-item">
-          <label>所在地</label>
-          <p>山东省聊城市高唐县赵寨子镇</p>
+          <label data-i18n="about.l2">所在地</label>
+          <p data-i18n="about.v2">山东省聊城市高唐县赵寨子镇</p>
         </div>
         <div class="about-info-item">
-          <label>行业类别</label>
-          <p>精密机械制造 · 通用设备制造</p>
+          <label data-i18n="about.l3">行业类别</label>
+          <p data-i18n="about.v3">精密机械制造 · 通用设备制造</p>
         </div>
         <div class="about-info-item">
-          <label>主营材质</label>
-          <p>天然花岗石（印度黑、山西黑）</p>
+          <label data-i18n="about.l4">主营材质</label>
+          <p data-i18n="about.v4">天然花岗石（印度黑、山西黑）</p>
         </div>
       </div>
     </div>
@@ -434,7 +482,7 @@
       </div>
       <div class="about-badge">
         <div class="about-badge-num">40,000+</div>
-        <div class="about-badge-label">厂区面积（㎡）</div>
+        <div class="about-badge-label" data-i18n="about.badgeLabel">厂区面积（㎡）</div>
       </div>
     </div>
   </div>
@@ -444,13 +492,13 @@
 <section id="products">
   <div class="section-header reveal">
     <div class="section-tag">PRODUCTS</div>
-    <h2 class="section-title">产品<em>系列</em></h2>
+    <h2 class="section-title"><span data-i18n="prod.t1">产品</span><em data-i18n="prod.t2">系列</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">两大核心系列，覆盖精密测量与装备结构全场景，支持来图定制各类规格</p>
+    <p class="section-sub" data-i18n="prod.sub">两大核心系列，覆盖精密测量与装备结构全场景，支持来图定制各类规格</p>
   </div>
   <div class="products-tabs reveal">
-    <button class="tab-btn active" onclick="switchTab(this,'tab-measure')">精密测量量具系列</button>
-    <button class="tab-btn" onclick="switchTab(this,'tab-structure')">精密装备结构件系列</button>
+    <button class="tab-btn active" onclick="switchTab(this,'tab-measure')" data-i18n="tab.measure">精密测量量具系列</button>
+    <button class="tab-btn" onclick="switchTab(this,'tab-structure')" data-i18n="tab.structure">精密装备结构件系列</button>
   </div>
 
   <!-- 测量量具 -->
@@ -461,10 +509,10 @@
           <img src="pptx_images2/slide4_img3.png" alt="花岗石精密测量平板" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">MEASURING TOOLS · 核心产品</div>
-          <div class="product-card-title">花岗石精密测量平板</div>
-          <div class="product-card-spec">规格：300×200×50mm ~ 4000×2500×500mm<br>精度：1级 / 0级 / 00级 / 000级<br>用作精密测量的基准平面，是各类检测工作的基础平台</div>
-          <span class="product-badge badge-core">核心产品</span>
+          <div class="product-card-tag">MEASURING TOOLS · <span data-i18n="badge.core">核心产品</span></div>
+          <div class="product-card-title" data-i18n="p1.title">花岗石精密测量平板</div>
+          <div class="product-card-spec"><span data-i18n="p1.s1">规格：300×200×50mm ~ 4000×2500×500mm</span><br><span data-i18n="p1.s2">精度：1级 / 0级 / 00级 / 000级</span><br><span data-i18n="p1.s3">用作精密测量的基准平面，是各类检测工作的基础平台</span></div>
+          <span class="product-badge badge-core" data-i18n="badge.core">核心产品</span>
         </div>
       </div>
       <div class="product-card">
@@ -472,10 +520,10 @@
           <img src="images/pingchi.png" alt="花岗石平尺" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">MEASURING TOOLS · 热销产品</div>
-          <div class="product-card-title">花岗石平尺</div>
-          <div class="product-card-spec">规格：400×60×25mm ~ 2000×300×100mm<br>用于检验工件的直线度和平面度<br>也可作为高精度测量基准</div>
-          <span class="product-badge badge-hot">热销产品</span>
+          <div class="product-card-tag">MEASURING TOOLS · <span data-i18n="badge.hot">热销产品</span></div>
+          <div class="product-card-title" data-i18n="p2.title">花岗石平尺</div>
+          <div class="product-card-spec"><span data-i18n="p2.s1">规格：400×60×25mm ~ 2000×300×100mm</span><br><span data-i18n="p2.s2">用于检验工件的直线度和平面度</span><br><span data-i18n="p2.s3">也可作为高精度测量基准</span></div>
+          <span class="product-badge badge-hot" data-i18n="badge.hot">热销产品</span>
         </div>
       </div>
       <div class="product-card">
@@ -483,10 +531,10 @@
           <img src="images/pingxinggui.png" alt="花岗石平行规" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">MEASURING TOOLS · 常规产品</div>
-          <div class="product-card-title">花岗石平行规</div>
-          <div class="product-card-spec">多种规格可选<br>用于检测两平面之间的平行度<br>配合千分表实现精密测量</div>
-          <span class="product-badge badge-std">常规产品</span>
+          <div class="product-card-tag">MEASURING TOOLS · <span data-i18n="badge.std">常规产品</span></div>
+          <div class="product-card-title" data-i18n="p3.title">花岗石平行规</div>
+          <div class="product-card-spec"><span data-i18n="p3.s1">多种规格可选</span><br><span data-i18n="p3.s2">用于检测两平面之间的平行度</span><br><span data-i18n="p3.s3">配合千分表实现精密测量</span></div>
+          <span class="product-badge badge-std" data-i18n="badge.std">常规产品</span>
         </div>
       </div>
       <div class="product-card">
@@ -495,9 +543,9 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-tag">MEASURING TOOLS</div>
-          <div class="product-card-title">直角尺 / 方尺 / 方箱</div>
-          <div class="product-card-spec">多种规格，00级可选<br>用于检验工件垂直度、机床导轨精度<br>及工作台相互垂直度测量</div>
-          <span class="product-badge badge-std">高精度</span>
+          <div class="product-card-title" data-i18n="p4.title">直角尺 / 方尺 / 方箱</div>
+          <div class="product-card-spec"><span data-i18n="p4.s1">多种规格，00级可选</span><br><span data-i18n="p4.s2">用于检验工件垂直度、机床导轨精度</span><br><span data-i18n="p4.s3">及工作台相互垂直度测量</span></div>
+          <span class="product-badge badge-std" data-i18n="badge.high">高精度</span>
         </div>
       </div>
       <div class="product-card">
@@ -506,23 +554,23 @@
         </div>
         <div class="product-card-body">
           <div class="product-card-tag">MEASURING TOOLS</div>
-          <div class="product-card-title">V型块 / 弯板 / 测量表座</div>
-          <div class="product-card-spec">多种规格，弯板可定制角度<br>用于轴类零件支撑、特殊角度测量<br>配合千分表/百分表使用</div>
-          <span class="product-badge badge-std">可定制</span>
+          <div class="product-card-title" data-i18n="p5.title">V型块 / 弯板 / 测量表座</div>
+          <div class="product-card-spec"><span data-i18n="p5.s1">多种规格，弯板可定制角度</span><br><span data-i18n="p5.s2">用于轴类零件支撑、特殊角度测量</span><br><span data-i18n="p5.s3">配合千分表/百分表使用</span></div>
+          <span class="product-badge badge-std" data-i18n="badge.customizable">可定制</span>
         </div>
       </div>
       <div class="product-card" style="border:1px dashed rgba(192,160,96,0.4); background:rgba(192,160,96,0.03);">
         <div class="product-card-img" style="background:rgba(192,160,96,0.06);">
           <div style="text-align:center; padding:20px;">
             <div style="font-size:40px;">🔧</div>
-            <div style="font-size:14px; color:#c0a060; margin-top:10px;">来图定制异形量具</div>
+            <div style="font-size:14px; color:#c0a060; margin-top:10px;" data-i18n="p6.overlay">来图定制异形量具</div>
           </div>
         </div>
         <div class="product-card-body">
           <div class="product-card-tag">CUSTOM ORDER</div>
-          <div class="product-card-title">来图定制异形量具</div>
-          <div class="product-card-spec">根据客户提供CAD图纸定制<br>满足各种个性化检测需求<br>可加工各类非标异形精密构件</div>
-          <span class="product-badge badge-core">定制专属</span>
+          <div class="product-card-title" data-i18n="p6.title">来图定制异形量具</div>
+          <div class="product-card-spec"><span data-i18n="p6.s1">根据客户提供CAD图纸定制</span><br><span data-i18n="p6.s2">满足各种个性化检测需求</span><br><span data-i18n="p6.s3">可加工各类非标异形精密构件</span></div>
+          <span class="product-badge badge-core" data-i18n="badge.exclusive">定制专属</span>
         </div>
       </div>
     </div>
@@ -536,10 +584,10 @@
           <img src="pptx_images2/slide7_img4.png" alt="花岗岩精密构件" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 装备核心</div>
-          <div class="product-card-title">花岗岩精密构件</div>
-          <div class="product-card-spec">为各种精密装备提供稳定基础支撑<br>极佳的减震性能和热稳定性<br>可开槽、打孔、镶嵌金属件</div>
-          <span class="product-badge badge-key">装备核心</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.eqcore">装备核心</span></div>
+          <div class="product-card-title" data-i18n="p7.title">花岗岩精密构件</div>
+          <div class="product-card-spec"><span data-i18n="p7.s1">为各种精密装备提供稳定基础支撑</span><br><span data-i18n="p7.s2">极佳的减震性能和热稳定性</span><br><span data-i18n="p7.s3">可开槽、打孔、镶嵌金属件</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.eqcore">装备核心</span>
         </div>
       </div>
       <div class="product-card">
@@ -547,10 +595,10 @@
           <img src="pptx_images2/slide7_img31.png" alt="花岗岩精密导轨" style="object-position:50% 60%;" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 高精度</div>
-          <div class="product-card-title">花岗岩精密导轨</div>
-          <div class="product-card-spec">用于精密直线运动导向<br>表面精度高，摩擦力小<br>长期使用不变形</div>
-          <span class="product-badge badge-key">高精度</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.high">高精度</span></div>
+          <div class="product-card-title" data-i18n="p8.title">花岗岩精密导轨</div>
+          <div class="product-card-spec"><span data-i18n="p8.s1">用于精密直线运动导向</span><br><span data-i18n="p8.s2">表面精度高，摩擦力小</span><br><span data-i18n="p8.s3">长期使用不变形</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.high">高精度</span>
         </div>
       </div>
       <div class="product-card">
@@ -558,10 +606,10 @@
           <img src="pptx_images2/slide7_img19.png" alt="花岗岩横梁" style="object-position:80% 50%;" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 大型件</div>
-          <div class="product-card-title">花岗岩横梁</div>
-          <div class="product-card-spec">大型精密装备的横向支撑结构<br>定制化尺寸和孔位<br>满足不同装备安装需求</div>
-          <span class="product-badge badge-key">大型件</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.large">大型件</span></div>
+          <div class="product-card-title" data-i18n="p9.title">花岗岩横梁</div>
+          <div class="product-card-spec"><span data-i18n="p9.s1">大型精密装备的横向支撑结构</span><br><span data-i18n="p9.s2">定制化尺寸和孔位</span><br><span data-i18n="p9.s3">满足不同装备安装需求</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.large">大型件</span>
         </div>
       </div>
       <div class="product-card">
@@ -569,10 +617,10 @@
           <img src="images/yzzhou.png" alt="花岗岩Y轴Z轴" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 关键部件</div>
-          <div class="product-card-title">花岗岩 Y轴 / Z轴</div>
-          <div class="product-card-spec">精密设备重要运动轴系结构<br>高刚性、高稳定性<br>支持定制化孔位和安装面</div>
-          <span class="product-badge badge-key">关键部件</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.key">关键部件</span></div>
+          <div class="product-card-title" data-i18n="p10.title">花岗岩 Y轴 / Z轴</div>
+          <div class="product-card-spec"><span data-i18n="p10.s1">精密设备重要运动轴系结构</span><br><span data-i18n="p10.s2">高刚性、高稳定性</span><br><span data-i18n="p10.s3">支持定制化孔位和安装面</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.key">关键部件</span>
         </div>
       </div>
       <div class="product-card">
@@ -580,10 +628,10 @@
           <img src="images/longmen.png" alt="花岗岩龙门" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 大型件</div>
-          <div class="product-card-title">花岗岩龙门</div>
-          <div class="product-card-spec">大型龙门结构件<br>用于大型测量/加工设备<br>整体刚性好、形变小</div>
-          <span class="product-badge badge-key">大型件</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.large">大型件</span></div>
+          <div class="product-card-title" data-i18n="p11.title">花岗岩龙门</div>
+          <div class="product-card-spec"><span data-i18n="p11.s1">大型龙门结构件</span><br><span data-i18n="p11.s2">用于大型测量/加工设备</span><br><span data-i18n="p11.s3">整体刚性好、形变小</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.large">大型件</span>
         </div>
       </div>
       <div class="product-card">
@@ -591,10 +639,10 @@
           <img src="images/qifu.png" alt="气浮网格线底座" />
         </div>
         <div class="product-card-body">
-          <div class="product-card-tag">STRUCTURE · 气浮专用</div>
-          <div class="product-card-title">气浮网格线底座</div>
-          <div class="product-card-spec">专为气浮平台设计<br>可开槽、打孔、镶嵌金属件<br>支持高精度气浮导轨安装</div>
-          <span class="product-badge badge-key">气浮专用</span>
+          <div class="product-card-tag">STRUCTURE · <span data-i18n="badge.air">气浮专用</span></div>
+          <div class="product-card-title" data-i18n="p12.title">气浮网格线底座</div>
+          <div class="product-card-spec"><span data-i18n="p12.s1">专为气浮平台设计</span><br><span data-i18n="p12.s2">可开槽、打孔、镶嵌金属件</span><br><span data-i18n="p12.s3">支持高精度气浮导轨安装</span></div>
+          <span class="product-badge badge-key" data-i18n="badge.air">气浮专用</span>
         </div>
       </div>
     </div>
@@ -605,33 +653,33 @@
     <div class="advantages-grid reveal">
       <div class="adv-card">
         <div class="adv-icon">🪨</div>
-        <div class="adv-title">天然高硬度</div>
-        <div class="adv-desc">采用优质印度黑、山西黑花岗石，结构致密，质地均匀，硬度高，强度大</div>
+        <div class="adv-title" data-i18n="adv1.t">天然高硬度</div>
+        <div class="adv-desc" data-i18n="adv1.d">采用优质印度黑、山西黑花岗石，结构致密，质地均匀，硬度高，强度大</div>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🌡️</div>
-        <div class="adv-title">低热膨胀系数</div>
-        <div class="adv-desc">热膨胀系数低，温度变化对精度影响极小，确保测量结果稳定可靠</div>
+        <div class="adv-title" data-i18n="adv2.t">低热膨胀系数</div>
+        <div class="adv-desc" data-i18n="adv2.d">热膨胀系数低，温度变化对精度影响极小，确保测量结果稳定可靠</div>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🔬</div>
-        <div class="adv-title">超高精度</div>
-        <div class="adv-desc">平面误差不超过0.001mm，可达000级超高精度，满足最苛刻的检测要求</div>
+        <div class="adv-title" data-i18n="adv3.t">超高精度</div>
+        <div class="adv-desc" data-i18n="adv3.d">平面误差不超过0.001mm，可达000级超高精度，满足最苛刻的检测要求</div>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🛡️</div>
-        <div class="adv-title">不生锈·耐腐蚀</div>
-        <div class="adv-desc">天然花岗石不生锈、耐酸碱、耐磨，无需防锈处理，维护成本极低</div>
+        <div class="adv-title" data-i18n="adv4.t">不生锈·耐腐蚀</div>
+        <div class="adv-desc" data-i18n="adv4.d">天然花岗石不生锈、耐酸碱、耐磨，无需防锈处理，维护成本极低</div>
       </div>
       <div class="adv-card">
         <div class="adv-icon">📐</div>
-        <div class="adv-title">不磁化·不变形</div>
-        <div class="adv-desc">不受磁场干扰，不磁化、不变形，重负荷下长期保持高精度</div>
+        <div class="adv-title" data-i18n="adv5.t">不磁化·不变形</div>
+        <div class="adv-desc" data-i18n="adv5.d">不受磁场干扰，不磁化、不变形，重负荷下长期保持高精度</div>
       </div>
       <div class="adv-card">
         <div class="adv-icon">🎛️</div>
-        <div class="adv-title">优良减震性能</div>
-        <div class="adv-desc">天然花岗石具有优良减震性能，有效隔离振动，是精密装备结构件的理想材料</div>
+        <div class="adv-title" data-i18n="adv6.t">优良减震性能</div>
+        <div class="adv-desc" data-i18n="adv6.d">天然花岗石具有优良减震性能，有效隔离振动，是精密装备结构件的理想材料</div>
       </div>
     </div>
   </div>
@@ -641,71 +689,71 @@
 <section id="custom">
   <div class="section-header reveal">
     <div class="section-tag">CUSTOM SERVICE</div>
-    <h2 class="section-title">定制化<em>加工服务</em></h2>
+    <h2 class="section-title"><span data-i18n="cust.t1">定制化</span><em data-i18n="cust.t2">加工服务</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">根据客户图纸或需求，提供全套花岗石精密构件定制加工，实现"量体裁衣"式服务</p>
+    <p class="section-sub" data-i18n="cust.sub">根据客户图纸或需求，提供全套花岗石精密构件定制加工，实现"量体裁衣"式服务</p>
   </div>
   <div class="custom-grid reveal">
     <div class="custom-card">
       <div class="custom-card-icon">📋</div>
-      <div class="custom-card-title">来图定制加工</div>
-      <div class="custom-card-desc">根据客户提供的CAD图纸，定制各类花岗石异形精密构件，满足特殊装备的结构需求</div>
+      <div class="custom-card-title" data-i18n="c1.t">来图定制加工</div>
+      <div class="custom-card-desc" data-i18n="c1.d">根据客户提供的CAD图纸，定制各类花岗石异形精密构件，满足特殊装备的结构需求</div>
     </div>
     <div class="custom-card">
       <div class="custom-card-icon">〰️</div>
-      <div class="custom-card-title">T型槽 / V型槽加工</div>
-      <div class="custom-card-desc">在花岗石平台上精确加工各类定位槽，用于工件定位装夹，满足复杂结构的装配需求</div>
+      <div class="custom-card-title" data-i18n="c2.t">T型槽 / V型槽加工</div>
+      <div class="custom-card-desc" data-i18n="c2.d">在花岗石平台上精确加工各类定位槽，用于工件定位装夹，满足复杂结构的装配需求</div>
     </div>
     <div class="custom-card">
       <div class="custom-card-icon">🔩</div>
-      <div class="custom-card-title">镶嵌金属件</div>
-      <div class="custom-card-desc">精密镶嵌金属螺纹套、销钉等，实现与其他部件的连接配合，确保装配精度</div>
+      <div class="custom-card-title" data-i18n="c3.t">镶嵌金属件</div>
+      <div class="custom-card-desc" data-i18n="c3.d">精密镶嵌金属螺纹套、销钉等，实现与其他部件的连接配合，确保装配精度</div>
     </div>
     <div class="custom-card">
       <div class="custom-card-icon">🔮</div>
-      <div class="custom-card-title">精密研磨</div>
-      <div class="custom-card-desc">手工精磨和机械精磨双重保障，确保极高的平面度和表面光洁度，达到最高精度要求</div>
+      <div class="custom-card-title" data-i18n="c4.t">精密研磨</div>
+      <div class="custom-card-desc" data-i18n="c4.d">手工精磨和机械精磨双重保障，确保极高的平面度和表面光洁度，达到最高精度要求</div>
     </div>
     <div class="custom-card">
       <div class="custom-card-icon">🧱</div>
-      <div class="custom-card-title">平台类结构件</div>
-      <div class="custom-card-desc">各种规格底座平台，可用于三坐标测量机、影像测量仪等高精度测量设备</div>
+      <div class="custom-card-title" data-i18n="c5.t">平台类结构件</div>
+      <div class="custom-card-desc" data-i18n="c5.d">各种规格底座平台，可用于三坐标测量机、影像测量仪等高精度测量设备</div>
     </div>
     <div class="custom-card">
       <div class="custom-card-icon">📏</div>
-      <div class="custom-card-title">导轨类构件</div>
-      <div class="custom-card-desc">直线导轨、V型导轨等，用于精密直线运动系统，满足各类精密装备的运动精度需求</div>
+      <div class="custom-card-title" data-i18n="c6.t">导轨类构件</div>
+      <div class="custom-card-desc" data-i18n="c6.d">直线导轨、V型导轨等，用于精密直线运动系统，满足各类精密装备的运动精度需求</div>
     </div>
   </div>
   <div class="flow-bar reveal">
     <div class="flow-step">
       <div class="flow-num">1</div>
-      <div class="flow-label">需求沟通</div>
+      <div class="flow-label" data-i18n="flow1">需求沟通</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-step">
       <div class="flow-num">2</div>
-      <div class="flow-label">图纸确认</div>
+      <div class="flow-label" data-i18n="flow2">图纸确认</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-step">
       <div class="flow-num">3</div>
-      <div class="flow-label">工艺设计</div>
+      <div class="flow-label" data-i18n="flow3">工艺设计</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-step">
       <div class="flow-num">4</div>
-      <div class="flow-label">生产加工</div>
+      <div class="flow-label" data-i18n="flow4">生产加工</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-step">
       <div class="flow-num">5</div>
-      <div class="flow-label">精密检测</div>
+      <div class="flow-label" data-i18n="flow5">精密检测</div>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-step">
       <div class="flow-num">6</div>
-      <div class="flow-label">包装发货</div>
+      <div class="flow-label" data-i18n="flow6">包装发货</div>
     </div>
   </div>
 </section>
@@ -714,54 +762,54 @@
 <section id="application">
   <div class="section-header reveal">
     <div class="section-tag">APPLICATION</div>
-    <h2 class="section-title">应用<em>领域</em></h2>
+    <h2 class="section-title"><span data-i18n="app.t1">应用</span><em data-i18n="app.t2">领域</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">产品广泛应用于精密测量、半导体、光学、数控机床等高端制造领域</p>
+    <p class="section-sub" data-i18n="app.sub">产品广泛应用于精密测量、半导体、光学、数控机床等高端制造领域</p>
   </div>
   <div class="app-table-wrap reveal">
     <table>
       <thead>
         <tr>
-          <th>应用领域</th>
-          <th>具体应用设备</th>
-          <th>涉及产品</th>
+          <th data-i18n="app.th1">应用领域</th>
+          <th data-i18n="app.th2">具体应用设备</th>
+          <th data-i18n="app.th3">涉及产品</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>精密测量与检测</td>
-          <td>三坐标测量机、影像测量仪、轮廓仪、圆度仪等</td>
-          <td><span class="tag-product">平板</span><span class="tag-product">底座</span><span class="tag-product">导轨</span></td>
+          <td data-i18n="app.r1f">精密测量与检测</td>
+          <td data-i18n="app.r1e">三坐标测量机、影像测量仪、轮廓仪、圆度仪等</td>
+          <td><span class="tag-product" data-i18n="tag.flat">平板</span><span class="tag-product" data-i18n="tag.base">底座</span><span class="tag-product" data-i18n="tag.rail">导轨</span></td>
         </tr>
         <tr>
-          <td>光学与激光设备</td>
-          <td>光学平台、激光加工设备、精密光学仪器</td>
-          <td><span class="tag-product">底座</span><span class="tag-product">龙门</span><span class="tag-product">平台</span></td>
+          <td data-i18n="app.r2f">光学与激光设备</td>
+          <td data-i18n="app.r2e">光学平台、激光加工设备、精密光学仪器</td>
+          <td><span class="tag-product" data-i18n="tag.base">底座</span><span class="tag-product" data-i18n="tag.gantry">龙门</span><span class="tag-product" data-i18n="tag.platform">平台</span></td>
         </tr>
         <tr>
-          <td>半导体与电子</td>
-          <td>半导体检测设备、晶圆加工设备、PCB钻孔机</td>
-          <td><span class="tag-product">Y/Z轴</span><span class="tag-product">结构件</span></td>
+          <td data-i18n="app.r3f">半导体与电子</td>
+          <td data-i18n="app.r3e">半导体检测设备、晶圆加工设备、PCB钻孔机</td>
+          <td><span class="tag-product" data-i18n="tag.yz">Y/Z轴</span><span class="tag-product" data-i18n="tag.struct">结构件</span></td>
         </tr>
         <tr>
-          <td>数控机床工业</td>
-          <td>CNC机床床身、精密磨床底座、电火花加工</td>
-          <td><span class="tag-product">横梁</span><span class="tag-product">底座</span><span class="tag-product">导轨</span></td>
+          <td data-i18n="app.r4f">数控机床工业</td>
+          <td data-i18n="app.r4e">CNC机床床身、精密磨床底座、电火花加工</td>
+          <td><span class="tag-product" data-i18n="tag.beam">横梁</span><span class="tag-product" data-i18n="tag.base">底座</span><span class="tag-product" data-i18n="tag.rail">导轨</span></td>
         </tr>
         <tr>
-          <td>自动化与机器人</td>
-          <td>精密自动化装配线、机器人检测系统</td>
-          <td><span class="tag-product">平台</span><span class="tag-product">龙门</span><span class="tag-product">气浮底座</span></td>
+          <td data-i18n="app.r5f">自动化与机器人</td>
+          <td data-i18n="app.r5e">精密自动化装配线、机器人检测系统</td>
+          <td><span class="tag-product" data-i18n="tag.platform">平台</span><span class="tag-product" data-i18n="tag.gantry">龙门</span><span class="tag-product" data-i18n="tag.airbase">气浮底座</span></td>
         </tr>
         <tr>
-          <td>科研与实验室</td>
-          <td>高校和科研院所精密实验平台的隔震底座</td>
-          <td><span class="tag-product">平板</span><span class="tag-product">底座</span><span class="tag-product">量具</span></td>
+          <td data-i18n="app.r6f">科研与实验室</td>
+          <td data-i18n="app.r6e">高校和科研院所精密实验平台的隔震底座</td>
+          <td><span class="tag-product" data-i18n="tag.flat">平板</span><span class="tag-product" data-i18n="tag.base">底座</span><span class="tag-product" data-i18n="tag.gauge">量具</span></td>
         </tr>
         <tr>
-          <td>五金模具</td>
-          <td>模具检测与精密加工</td>
-          <td><span class="tag-product">平板</span><span class="tag-product">方箱</span><span class="tag-product">量具</span></td>
+          <td data-i18n="app.r7f">五金模具</td>
+          <td data-i18n="app.r7e">模具检测与精密加工</td>
+          <td><span class="tag-product" data-i18n="tag.flat">平板</span><span class="tag-product" data-i18n="tag.box">方箱</span><span class="tag-product" data-i18n="tag.gauge">量具</span></td>
         </tr>
       </tbody>
     </table>
@@ -772,7 +820,7 @@
 <section id="capacity">
   <div class="section-header reveal">
     <div class="section-tag">PRODUCTION CAPACITY</div>
-    <h2 class="section-title">生产能力<em>与设备</em></h2>
+    <h2 class="section-title"><span data-i18n="cap.t1">生产能力</span><em data-i18n="cap.t2">与设备</em></h2>
     <div class="divider"></div>
   </div>
   <div class="capacity-grid reveal">
@@ -780,59 +828,59 @@
       <div class="capacity-item">
         <div class="capacity-dot"></div>
         <div class="capacity-item-content">
-          <h4>大型精密石材加工设备</h4>
-          <p>配备先进大型精密石材加工设备，可加工最大5000×3000×400mm规格的超大尺寸构件</p>
+          <h4 data-i18n="cap1.t">大型精密石材加工设备</h4>
+          <p data-i18n="cap1.d">配备先进大型精密石材加工设备，可加工最大5000×3000×400mm规格的超大尺寸构件</p>
         </div>
       </div>
       <div class="capacity-item">
         <div class="capacity-dot"></div>
         <div class="capacity-item-content">
-          <h4>精密恒温加工车间</h4>
-          <p>专业恒温加工环境，消除温度变化对精度的影响，确保加工全程精度稳定</p>
+          <h4 data-i18n="cap2.t">精密恒温加工车间</h4>
+          <p data-i18n="cap2.d">专业恒温加工环境，消除温度变化对精度的影响，确保加工全程精度稳定</p>
         </div>
       </div>
       <div class="capacity-item">
         <div class="capacity-dot"></div>
         <div class="capacity-item-content">
-          <h4>先进电子检测设备</h4>
-          <p>配备计算机数据处理系统，产品全部经计算机检测，确保每件产品符合最高标准</p>
+          <h4 data-i18n="cap3.t">先进电子检测设备</h4>
+          <p data-i18n="cap3.d">配备计算机数据处理系统，产品全部经计算机检测，确保每件产品符合最高标准</p>
         </div>
       </div>
       <div class="capacity-item">
         <div class="capacity-dot"></div>
         <div class="capacity-item-content">
-          <h4>三个生产厂区 · 12个专业生产车间</h4>
-          <p>占地面积超60亩，涵盖机械加工、精密研磨、维修、计量、检测等专业车间，全面覆盖生产各环节</p>
+          <h4 data-i18n="cap4.t">三个生产厂区 · 12个专业生产车间</h4>
+          <p data-i18n="cap4.d">占地面积超60亩，涵盖机械加工、精密研磨、维修、计量、检测等专业车间，全面覆盖生产各环节</p>
         </div>
       </div>
       <div class="capacity-item">
         <div class="capacity-dot"></div>
         <div class="capacity-item-content">
-          <h4>质量方针</h4>
-          <p>以质量求生存，以效益求发展 — 持续的产能提升和质量投入</p>
+          <h4 data-i18n="cap5.t">质量方针</h4>
+          <p data-i18n="cap5.d">以质量求生存，以效益求发展 — 持续的产能提升和质量投入</p>
         </div>
       </div>
     </div>
     <div class="capacity-metrics">
       <div class="metric-card">
-        <div class="metric-num">000级</div>
-        <div class="metric-label">最高精度等级</div>
+        <div class="metric-num" data-i18n="capm1.num">000级</div>
+        <div class="metric-label" data-i18n="capm1.label">最高精度等级</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">0.001</div>
-        <div class="metric-label">平面误差（mm）</div>
+        <div class="metric-label" data-i18n="capm2.label">平面误差（mm）</div>
       </div>
       <div class="metric-card">
         <div class="metric-num">5000mm</div>
-        <div class="metric-label">最大加工尺寸</div>
+        <div class="metric-label" data-i18n="capm3.label">最大加工尺寸</div>
       </div>
       <div class="metric-card">
-        <div class="metric-num">5000万+</div>
-        <div class="metric-label">年产能（元）</div>
+        <div class="metric-num" data-i18n="capm4.num">5000万+</div>
+        <div class="metric-label" data-i18n="capm4.label">年产能（元）</div>
       </div>
       <div class="metric-card" style="grid-column:1/-1;">
-        <div class="metric-num">30+ 国家和地区</div>
-        <div class="metric-label">远销欧美、日韩、东南亚</div>
+        <div class="metric-num" data-i18n="capm5.num">30+ 国家和地区</div>
+        <div class="metric-label" data-i18n="capm5.label">远销欧美、日韩、东南亚</div>
       </div>
     </div>
   </div>
@@ -845,57 +893,58 @@
 <section id="contact">
   <div class="section-header">
     <div class="section-tag" style="background:rgba(192,160,96,0.15); color:#e8c87a;">CONTACT US</div>
-    <h2 class="section-title" style="color:#fff;">联系<em>我们</em></h2>
+    <h2 class="section-title" style="color:#fff;"><span data-i18n="cont.t1">联系</span><em data-i18n="cont.t2">我们</em></h2>
     <div class="divider"></div>
-    <p class="section-sub">欢迎各界朋友莅临参观指导，期待与您合作</p>
+    <p class="section-sub" data-i18n="cont.sub">欢迎各界朋友莅临参观指导，期待与您合作</p>
   </div>
   <div class="contact-grid">
     <div class="contact-info-list">
       <div class="contact-item">
         <div class="contact-icon">📍</div>
         <div class="contact-item-content">
-          <h4>公司地址</h4>
-          <p>山东省聊城市高唐县赵寨子镇丁岗工业园内聊禹路以西</p>
+          <h4 data-i18n="ci1.l">公司地址</h4>
+          <p data-i18n="ci1.v">山东省聊城市高唐县赵寨子镇丁岗工业园内聊禹路以西</p>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">📞</div>
         <div class="contact-item-content">
-          <h4>联系电话</h4>
+          <h4 data-i18n="ci2.l">联系电话</h4>
           <p>15801614229</p>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">📧</div>
         <div class="contact-item-content">
-          <h4>公司邮箱</h4>
+          <h4 data-i18n="ci3.l">公司邮箱</h4>
           <p>784881478@qq.com</p>
         </div>
       </div>
       <div class="contact-item">
         <div class="contact-icon">🏭</div>
         <div class="contact-item-content">
-          <h4>地理位置</h4>
-          <p>"中国花岗石精密构件之乡" · 高唐县花岗岩精密机械产业集群核心区</p>
+          <h4 data-i18n="ci4.l">地理位置</h4>
+          <p data-i18n="ci4.v">"中国花岗石精密构件之乡" · 高唐县花岗岩精密机械产业集群核心区</p>
         </div>
       </div>
     </div>
     <div class="contact-map">
       <div style="font-size:48px; margin-bottom:8px;">🗺️</div>
-      <p>山东省聊城市高唐县赵寨子镇</p>
-      <p style="margin-bottom:12px; font-size:12px; color:rgba(255,255,255,0.4);">丁岗工业园 · 聊禹路以西</p>
-      <a href="https://map.baidu.com/search/山东省聊城市高唐县赵寨子镇" target="_blank">在百度地图中查看</a>
+      <p data-i18n="map.p1">山东省聊城市高唐县赵寨子镇</p>
+      <p style="margin-bottom:12px; font-size:12px; color:rgba(255,255,255,0.4);" data-i18n="map.p2">丁岗工业园 · 聊禹路以西</p>
+      <a href="https://map.baidu.com/search/山东省聊城市高唐县赵寨子镇" target="_blank" data-i18n="map.link">在百度地图中查看</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p><span>山东东远精密机械有限公司</span> · 花岗石精密构件专业制造商</p>
+  <p><span>山东东远精密机械有限公司</span> · <span data-i18n="f1">花岗石精密构件专业制造商</span></p>
   <p style="margin-top:6px;">© 2024 SHANDONG DONGYUAN PRECISION MACHINERY CO., LTD. · All Rights Reserved</p>
-  <p style="margin-top:4px;">地址：山东省聊城市高唐县赵寨子镇丁岗工业园 · 电话：<span>15801614229</span></p>
+  <p style="margin-top:4px;"><span data-i18n="f3a">地址：山东省聊城市高唐县赵寨子镇丁岗工业园 · 电话：</span><span>15801614229</span></p>
 </footer>
 
+<script src="i18n.js"></script>
 <script>
 // Tab switch
 function switchTab(btn, tabId) {
@@ -930,6 +979,72 @@ window.addEventListener('scroll', () => {
     a.style.borderBottomColor = a.getAttribute('href') === '#'+current ? '#e8c87a' : '';
   });
 }, {passive:true});
+
+/* ==========================================================
+   MULTI-LANGUAGE i18n — logic (translations in i18n.js)
+   Languages: zh / en / ru / fr / de / ko / ja
+   ========================================================== */
+// Capture original Chinese strings from the DOM as the zh dictionary
+const zhStrings = {};
+document.querySelectorAll('[data-i18n]').forEach(el => {
+  const key = el.getAttribute('data-i18n');
+  if (!(key in zhStrings)) zhStrings[key] = el.textContent.trim();
+});
+
+const LANG_NAMES = { zh:'中文', en:'English', ru:'Русский', fr:'Français', de:'Deutsch', ko:'한국어', ja:'日本語' };
+
+function setLang(lang) {
+  const dict = lang === 'zh' ? zhStrings : (window.I18N && window.I18N[lang]);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = dict ? (dict[key] || zhStrings[key]) : zhStrings[key];
+    el.textContent = val;
+  });
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  const t = dict && dict['doc.title'];
+  if (t) document.title = t;
+  document.getElementById('langCur').textContent = LANG_NAMES[lang] || lang;
+  document.querySelectorAll('#langMenu button').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('dy_lang', lang); } catch(e) {}
+}
+
+// Language switcher interactions
+const langBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  langMenu.classList.toggle('open');
+});
+document.addEventListener('click', (e) => {
+  if (!langMenu.contains(e.target)) langMenu.classList.remove('open');
+});
+langMenu.querySelectorAll('button').forEach(b => {
+  b.addEventListener('click', () => {
+    setLang(b.getAttribute('data-lang'));
+    langMenu.classList.remove('open');
+  });
+});
+
+// Init: saved preference -> browser language -> Chinese
+(function initLang() {
+  let lang = 'zh';
+  try {
+    const saved = localStorage.getItem('dy_lang');
+    if (saved && LANG_NAMES[saved]) lang = saved;
+    else {
+      const bl = (navigator.language || 'zh').toLowerCase();
+      if (bl.startsWith('en')) lang = 'en';
+      else if (bl.startsWith('ru')) lang = 'ru';
+      else if (bl.startsWith('fr')) lang = 'fr';
+      else if (bl.startsWith('de')) lang = 'de';
+      else if (bl.startsWith('ko')) lang = 'ko';
+      else if (bl.startsWith('ja')) lang = 'ja';
+    }
+  } catch(e) {}
+  setLang(lang);
+})();
 </script>
 </body>
 </html>
